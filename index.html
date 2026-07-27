@@ -1,99 +1,268 @@
-<!DOCTYPE html><html lang="ar" dir="rtl">
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BODY GG</title>
+  <title>VIP11 - متجر الشحن السريع</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { tajawal: ['Tajawal', 'sans-serif'] },
+          colors: {
+            darkBg: '#08080c',
+            cardBg: '#101018',
+            accentCyan: '#00f3ff',
+            accentPink: '#ff007f',
+            accentGreen: '#00ff87',
+            accentYellow: '#ffbe0b'
+          }
+        }
+      }
+    }
+  </script>
+
   <style>
-    body {
-      margin: 0;
-      font-family: "Cairo", sans-serif;
-      background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
-      color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }.card {
-  background: #111;
-  width: 330px;
-  border-radius: 25px;
-  padding: 25px;
-  text-align: center;
-  box-shadow: 0 0 35px rgba(0, 255, 255, 0.25);
-}
+    body { font-family: 'Tajawal', sans-serif; background-color: #08080c; color: #fff; }
+    
+    /* لمسات النيون الاحترافية */
+    .neon-border-cyan { border: 1px solid rgba(0, 243, 255, 0.3); box-shadow: 0 0 12px rgba(0, 243, 255, 0.15); }
+    .neon-border-cyan:hover { border-color: #00f3ff; box-shadow: 0 0 20px rgba(0, 243, 255, 0.4); }
+    
+    .neon-border-pink { border: 1px solid rgba(255, 0, 127, 0.3); box-shadow: 0 0 12px rgba(255, 0, 127, 0.15); }
+    .neon-border-pink:hover { border-color: #ff007f; box-shadow: 0 0 20px rgba(255, 0, 127, 0.4); }
 
-.avatar {
-  width: 140px;
-  height: 140px;
-  border-radius: 50%;
-  border: 4px solid #00ffff;
-  object-fit: cover;
-  margin-bottom: 15px;
-}
+    .glow-btn-cyan { background: #00f3ff; color: #000; box-shadow: 0 0 15px rgba(0, 243, 255, 0.4); transition: all 0.2s ease; }
+    .glow-btn-cyan:active { scale: 0.96; box-shadow: 0 0 5px rgba(0, 243, 255, 0.8); }
 
-h1 {
-  margin: 10px 0 20px;
-  font-size: 28px;
-  color: #00ffff;
-  letter-spacing: 2px;
-}
-
-.main-btn {
-  width: 100%;
-  padding: 15px;
-  border-radius: 16px;
-  border: none;
-  background: linear-gradient(135deg, #00ffff, #0077ff);
-  color: black;
-  font-size: 18px;
-  cursor: pointer;
-  margin-bottom: 15px;
-  font-weight: bold;
-}
-
-.links {
-  display: none;
-  margin-top: 10px;
-}
-
-.link-btn {
-  display: block;
-  text-decoration: none;
-  background: #1f1f1f;
-  color: white;
-  padding: 13px;
-  margin: 10px 0;
-  border-radius: 14px;
-  border: 1px solid #00ffff55;
-  transition: 0.3s;
-  font-size: 16px;
-}
-
-.link-btn:hover {
-  background: #00ffff;
-  color: black;
-}
-
+    .glass-panel { background: rgba(16, 16, 24, 0.75); backdrop-filter: blur(10px); }
+    
+    /* إخفاء الصفحات غير النشطة */
+    .page { display: none; }
+    .page.active { display: block; }
   </style>
 </head>
-<body>  <div class="card">
-    <!-- الصورة محلية: حط الصورة جنب الملف واسمها photo.jpg -->
-    <img src="photo.jpg" class="avatar" alt="BODY GG"><h1>BODY GG</h1>
+<body class="min-h-screen pb-20">
 
-<button class="main-btn" onclick="toggleLinks()">
-  معلوماتي الشخصية ووسائل التواصل
-</button>
+  <!-- 1. الهيدر (Header) -->
+  <header class="sticky top-0 z-50 glass-panel border-b border-white/10 px-4 py-3 flex justify-between items-center">
+    <div class="flex items-center gap-2 cursor-pointer" onclick="showPage('home')">
+      <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-accentCyan to-accentPink flex items-center justify-center font-black text-black text-lg">V</div>
+      <span class="font-black text-xl tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-accentCyan to-white">VIP11</span>
+    </div>
 
-<div class="links" id="links">
-  <a class="link-btn" href="https://discord.com/users/bodygg0437_68322" target="_blank">Discord: bodygg0437_68322</a>
-  <a class="link-btn" href="https://wa.me/201154536507" target="_blank">WhatsApp</a>
-  <a class="link-btn" href="https://www.facebook.com/profile.php?id=61574002172087" target="_blank">Facebook</a>
-</div>
+    <!-- قائمة رصيدي والدخول -->
+    <div class="flex items-center gap-2">
+      <button onclick="showPage('wallet')" class="bg-cardBg border border-accentGreen/40 text-accentGreen px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1 shadow-[0_0_10px_rgba(0,255,135,0.2)]">
+        <span>رصيدي:</span>
+        <span class="text-white font-extrabold">$15.50</span>
+      </button>
+      <button onclick="showPage('login')" class="bg-accentPink text-white px-3 py-1.5 rounded-xl text-xs font-bold shadow-[0_0_10px_rgba(255,0,127,0.4)]">
+        دخول
+      </button>
+    </div>
+  </header>
 
-  </div>  <script>
-    function toggleLinks() {
-      const links = document.getElementById("links");
-      links.style.display = links.style.display === "block" ? "none" : "block";
+  <!-- 2. الصفحة الرئيسية (Home Page) -->
+  <div id="home" class="page active px-4 pt-4">
+    
+    <!-- بنر إعلاني ترحيبي -->
+    <div class="relative rounded-2xl p-5 mb-6 overflow-hidden border border-accentCyan/30 bg-gradient-to-r from-cardBg via-[#141428] to-cardBg">
+      <div class="relative z-10">
+        <span class="text-[10px] bg-accentCyan/20 text-accentCyan border border-accentCyan/40 px-2.5 py-0.5 rounded-full font-bold">عروض اليوم 🔥</span>
+        <h2 class="text-xl font-black mt-2 text-white">اشحن ألعابك وتطبيقاتك فوراً</h2>
+        <p class="text-xs text-gray-400 mt-1">أسعار تنافسية وتسليم آلي سريع على مدار الساعة</p>
+      </div>
+    </div>
+
+    <!-- أزرار الفلترة للأقسام -->
+    <div class="flex gap-2 overflow-x-auto pb-3 text-xs no-scrollbar">
+      <button class="bg-accentCyan text-black font-bold px-4 py-2 rounded-xl whitespace-nowrap">الكل</button>
+      <button class="bg-cardBg border border-white/10 text-gray-300 font-medium px-4 py-2 rounded-xl whitespace-nowrap">🎮 الألعاب</button>
+      <button class="bg-cardBg border border-white/10 text-gray-300 font-medium px-4 py-2 rounded-xl whitespace-nowrap">💬 تطبيقات الشات</button>
+      <button class="bg-cardBg border border-white/10 text-gray-300 font-medium px-4 py-2 rounded-xl whitespace-nowrap">💳 بطاقات رقمية</button>
+    </div>
+
+    <!-- شبكة الخدمات -->
+    <div class="grid grid-cols-2 gap-3 mt-3">
+      
+      <!-- كارت ببجي -->
+      <div onclick="showPage('recharge')" class="bg-cardBg rounded-2xl p-3.5 neon-border-cyan transition-all duration-300 cursor-pointer flex flex-col justify-between">
+        <div>
+          <div class="w-12 h-12 bg-gray-800 rounded-xl mb-2 flex items-center justify-center font-bold text-accentCyan border border-accentCyan/30">PUBG</div>
+          <h3 class="font-bold text-sm text-white">ببجي موبايل</h3>
+          <p class="text-[10px] text-gray-400">شحن بـ ID الحساب</p>
+        </div>
+        <button class="w-full mt-3 py-2 glow-btn-cyan text-xs font-black rounded-xl">اشحن الآن</button>
+      </div>
+
+      <!-- كارت بيجو لايف -->
+      <div onclick="showPage('recharge')" class="bg-cardBg rounded-2xl p-3.5 neon-border-pink transition-all duration-300 cursor-pointer flex flex-col justify-between">
+        <div>
+          <div class="w-12 h-12 bg-gray-800 rounded-xl mb-2 flex items-center justify-center font-bold text-accentPink border border-accentPink/30">BIGO</div>
+          <h3 class="font-bold text-sm text-white">بيجو لايف</h3>
+          <p class="text-[10px] text-gray-400">شحن الماس وفصول</p>
+        </div>
+        <button class="w-full mt-3 py-2 bg-accentPink text-white font-black rounded-xl text-xs shadow-[0_0_12px_#ff007f]">اشحن الآن</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 3. واجهة الشحن (Recharge Page) -->
+  <div id="recharge" class="page px-4 pt-4">
+    <button onclick="showPage('home')" class="text-xs text-gray-400 mb-4 flex items-center gap-1">➡️ عودة للرئيسية</button>
+    
+    <div class="bg-cardBg border border-accentCyan/40 rounded-2xl p-4 mb-4">
+      <h2 class="text-lg font-black text-accentCyan mb-1">شحن ببجي موبايل (UC)</h2>
+      <p class="text-xs text-gray-400 mb-4">ادخل الآيدي واختر الباقة وطريقة الدفع</p>
+
+      <!-- مدخل الآيدي -->
+      <label class="text-xs font-bold text-gray-300 block mb-1">معرف اللاعب (Player ID):</label>
+      <input type="number" placeholder="مثال: 512345678" class="w-full bg-darkBg border border-accentCyan/30 rounded-xl p-3 text-sm text-white focus:outline-none focus:border-accentCyan mb-4">
+
+      <!-- اختيار الباقة -->
+      <label class="text-xs font-bold text-gray-300 block mb-2">اختر الباقة المناسبة:</label>
+      <div class="grid grid-cols-2 gap-2 mb-4">
+        <div class="bg-darkBg border-2 border-accentCyan rounded-xl p-3 text-center cursor-pointer">
+          <div class="text-accentCyan font-black text-sm">60 UC</div>
+          <div class="text-xs text-gray-300 font-bold">$0.99</div>
+        </div>
+        <div class="bg-darkBg border border-white/10 rounded-xl p-3 text-center cursor-pointer">
+          <div class="text-white font-bold text-sm">325 UC</div>
+          <div class="text-xs text-gray-400">$4.99</div>
+        </div>
+      </div>
+
+      <!-- طريقة الدفع -->
+      <label class="text-xs font-bold text-gray-300 block mb-2">اختر طريقة الدفع:</label>
+      <div class="space-y-2 mb-5">
+        <label class="flex items-center justify-between p-3 bg-darkBg border border-accentGreen/50 rounded-xl cursor-pointer">
+          <div class="flex items-center gap-2">
+            <input type="radio" name="pay" checked class="accent-accentGreen">
+            <span class="text-xs font-bold text-white">رصيد المحفظة ($15.50)</span>
+          </div>
+          <span class="text-[10px] text-accentGreen">دفع فورى</span>
+        </label>
+        <label class="flex items-center justify-between p-3 bg-darkBg border border-white/10 rounded-xl cursor-pointer">
+          <div class="flex items-center gap-2">
+            <input type="radio" name="pay" class="accent-accentCyan">
+            <span class="text-xs font-bold text-white">Vodafone Cash / InstaPay</span>
+          </div>
+          <span class="text-[10px] text-gray-400">تحويل محلي</span>
+        </label>
+      </div>
+
+      <button class="w-full py-3 glow-btn-cyan font-black text-sm rounded-xl">تأكيد عملية الشحن</button>
+    </div>
+  </div>
+
+  <!-- 4. قائمة "طلباتي" (My Orders) -->
+  <div id="orders" class="page px-4 pt-4">
+    <h2 class="text-lg font-black text-white mb-4 border-r-4 border-accentCyan pr-2">سجل طلباتي</h2>
+    
+    <div class="space-y-3">
+      <!-- طلب مكتمل -->
+      <div class="bg-cardBg border border-white/10 rounded-2xl p-3.5">
+        <div class="flex justify-between items-start mb-2">
+          <div>
+            <h4 class="font-bold text-sm text-white">ببجي موبايل (60 UC)</h4>
+            <p class="text-[10px] text-gray-400">ID: 58923411 • 2026-07-27</p>
+          </div>
+          <span class="bg-accentGreen/20 text-accentGreen border border-accentGreen/30 text-[10px] font-bold px-2 py-0.5 rounded-full">مكتمل</span>
+        </div>
+        <div class="flex justify-between items-center text-xs text-gray-300 pt-2 border-t border-white/5">
+          <span>المبلغ: $0.99</span>
+          <span class="text-accentCyan font-bold cursor-pointer">التفاصيل</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. قسم "رصيدي والمحفظة" (Wallet) -->
+  <div id="wallet" class="page px-4 pt-4">
+    <div class="bg-gradient-to-br from-cardBg to-[#181828] border border-accentGreen/40 rounded-2xl p-5 mb-5 text-center shadow-[0_0_20px_rgba(0,255,135,0.15)]">
+      <span class="text-xs text-gray-400 font-bold">رصيدك الحالي</span>
+      <h1 class="text-3xl font-black text-accentGreen my-2">$15.50</h1>
+      <button class="mt-2 bg-accentGreen text-black font-extrabold px-5 py-2 rounded-xl text-xs shadow-[0_0_10px_#00ff87]">إضافة رصيد للمحفظة</button>
+    </div>
+  </div>
+
+  <!-- 6. لوحة تحكم الأدمن (Admin Dashboard) -->
+  <div id="admin" class="page px-4 pt-4">
+    <div class="flex justify-between items-center mb-4">
+      <h2 class="text-lg font-black text-accentPink border-r-4 border-accentPink pr-2">لوحة التحكم (Admin)</h2>
+      <span class="text-[10px] bg-accentPink/20 text-accentPink px-2 py-1 rounded-md font-bold">المدير</span>
+    </div>
+
+    <!-- إحصائيات سريعة -->
+    <div class="grid grid-cols-2 gap-2 mb-4">
+      <div class="bg-cardBg border border-white/10 p-3 rounded-xl">
+        <span class="text-[10px] text-gray-400">أرباح اليوم</span>
+        <h3 class="text-lg font-black text-accentGreen">$124.00</h3>
+      </div>
+      <div class="bg-cardBg border border-white/10 p-3 rounded-xl">
+        <span class="text-[10px] text-gray-400">الطلبات المعلقة</span>
+        <h3 class="text-lg font-black text-accentYellow">3 طلبات</h3>
+      </div>
+    </div>
+
+    <h3 class="text-xs font-bold text-gray-300 mb-2">إدارة الطلبات الواردة</h3>
+    <div class="bg-cardBg border border-white/10 rounded-xl p-3 mb-2">
+      <div class="flex justify-between text-xs mb-1">
+        <span class="font-bold text-white">ببجي (325 UC)</span>
+        <span class="text-accentYellow font-bold">قيد الانتظار</span>
+      </div>
+      <p class="text-[10px] text-gray-400 mb-2">المستخدم: Ahmed10 • ID: 512399</p>
+      <div class="flex gap-2">
+        <button class="flex-1 bg-accentGreen text-black font-bold text-[10px] py-1 rounded-lg">قَبول وتأكيد</button>
+        <button class="flex-1 bg-red-500/20 text-red-400 border border-red-500/30 font-bold text-[10px] py-1 rounded-lg">رفض</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. تسجيل الدخول (Login) -->
+  <div id="login" class="page px-4 pt-8">
+    <div class="bg-cardBg border border-accentPink/40 rounded-2xl p-5 max-w-sm mx-auto">
+      <h2 class="text-xl font-black text-center text-accentPink mb-4">تسجيل الدخول</h2>
+      <input type="email" placeholder="البريد الإلكتروني" class="w-full bg-darkBg border border-white/10 rounded-xl p-3 text-xs text-white mb-3 focus:outline-none focus:border-accentPink">
+      <input type="password" placeholder="كلمة المرور" class="w-full bg-darkBg border border-white/10 rounded-xl p-3 text-xs text-white mb-4 focus:outline-none focus:border-accentPink">
+      <button class="w-full py-3 bg-accentPink text-white font-black text-xs rounded-xl shadow-[0_0_12px_#ff007f]">دخول</button>
+    </div>
+  </div>
+
+  <!-- الشريط السفلي للتنقل السريع (Bottom Nav) -->
+  <nav class="fixed bottom-0 left-0 right-0 glass-panel border-t border-white/10 py-2 px-6 flex justify-between items-center text-[10px] text-gray-400 z-50">
+    <button onclick="showPage('home')" class="flex flex-col items-center gap-1 focus:text-accentCyan">
+      <span>🏠</span>
+      <span>الرئيسية</span>
+    </button>
+    <button onclick="showPage('orders')" class="flex flex-col items-center gap-1 focus:text-accentCyan">
+      <span>📦</span>
+      <span>طلباتي</span>
+    </button>
+    <button onclick="showPage('wallet')" class="flex flex-col items-center gap-1 focus:text-accentCyan">
+      <span>💰</span>
+      <span>رصيدي</span>
+    </button>
+    <button onclick="showPage('admin')" class="flex flex-col items-center gap-1 focus:text-accentPink">
+      <span>⚙️</span>
+      <span>الأدمن</span>
+    </button>
+  </nav>
+
+  <!-- سكربت التحكم في التنقل بين الصفحات -->
+  <script>
+    function showPage(pageId) {
+      document.querySelectorAll('.page').forEach(page => {
+        page.classList.remove('active');
+      });
+      document.getElementById(pageId).classList.add('active');
+      window.scrollTo(0, 0);
     }
-  </script></body>
+  </script>
+</body>
 </html>
